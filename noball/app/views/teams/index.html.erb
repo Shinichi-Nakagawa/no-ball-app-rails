@@ -1,23 +1,189 @@
-<h1>Listing teams</h1>
+<script type="text/javascript">
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'ピタゴラス勝率と実際の勝率の相関図(MLB, 2013シーズン(AL))'
+            },
+            subtitle: {
+                text: 'Source: Sean lahman database 2013'
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: '実際の勝利数'
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'ピタゴラス勝率から算出した勝利数'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+                borderWidth: 1
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 5,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{point.key}</b><br>',
+                        pointFormat: '実際：{point.x}勝, 予測：{point.y}勝'
+                    }
+                }
+            },
+            series: [{
+                name: 'チーム(地区順位) ※E:東地区,C:中地区,W:西地区',
+                color: 'rgba(223, 83, 83, .5)',
+                dataLabels: {
+                    enabled: true,
+                    x:20,
+                    formatter:function() {
+                        return this.point.team;
+                    },
+                    style:{color:"black"}
+                },
+                data: [
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                    {
+                        "x": 93,
+                        "y": 98.0,
+                        "name": 'Detroit Tigers(C, 1)',
+                        "team": 'DET'
+                    },
 
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+                    {
+                        "x": 92,
+                        "y": 90.0,
+                        "name": 'Cleveland Indians(C, 2)',
+                        "team": 'CLE'
+                    },
 
-<br>
+                    {
+                        "x": 86,
+                        "y": 87.0,
+                        "name": 'Kansas City Royals(C, 3)',
+                        "team": 'KCA'
+                    },
 
-<%= link_to 'New Team', new_team_path %>
+                    {
+                        "x": 66,
+                        "y": 63.0,
+                        "name": 'Minnesota Twins(C, 4)',
+                        "team": 'MIN'
+                    },
+
+                    {
+                        "x": 63,
+                        "y": 67.0,
+                        "name": 'Chicago Cubs(C, 5)',
+                        "team": 'CHA'
+                    },
+
+                    {
+                        "x": 97,
+                        "y": 100.0,
+                        "name": 'Boston Red Sox(E, 1)',
+                        "team": 'BOS'
+                    },
+
+                    {
+                        "x": 92,
+                        "y": 87.0,
+                        "name": 'Tampa Bay Rays(E, 2)',
+                        "team": 'TBA'
+                    },
+
+                    {
+                        "x": 85,
+                        "y": 85.0,
+                        "name": 'Baltimore Orioles(E, 3)',
+                        "team": 'BAL'
+                    },
+
+                    {
+                        "x": 85,
+                        "y": 79.0,
+                        "name": 'New York Yankees(E, 4)',
+                        "team": 'NYA'
+                    },
+
+                    {
+                        "x": 74,
+                        "y": 77.0,
+                        "name": 'Toronto Blue Jays(E, 5)',
+                        "team": 'TOR'
+                    },
+
+                    {
+                        "x": 96,
+                        "y": 96.0,
+                        "name": 'Oakland Athletics(W, 1)',
+                        "team": 'OAK'
+                    },
+
+                    {
+                        "x": 91,
+                        "y": 92.0,
+                        "name": 'Texas Rangers(W, 2)',
+                        "team": 'TEX'
+                    },
+
+                    {
+                        "x": 78,
+                        "y": 81.0,
+                        "name": 'Los Angeles Angels of Anaheim(W, 3)',
+                        "team": 'LAA'
+                    },
+
+                    {
+                        "x": 71,
+                        "y": 67.0,
+                        "name": 'Seattle Mariners(W, 4)',
+                        "team": 'SEA'
+                    },
+
+                    {
+                        "x": 51,
+                        "y": 58.0,
+                        "name": 'Houston Astros(W, 5)',
+                        "team": 'HOU'
+                    },
+
+                ]
+
+            }
+            ]
+        });
+    });
+
+
+</script>
+<div id="container" style="margin: 0 auto"></div>
