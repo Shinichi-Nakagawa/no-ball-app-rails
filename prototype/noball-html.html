@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://127.0.0.1:8000/mlb/pythagoras_search/ -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>No Ball - Pythagorean expectation</title>
+
+    
+    <link href="http://127.0.0.1:8000/static/css/bootstrap.css" rel="stylesheet">
+
+    
+    <link href="http://127.0.0.1:8000/static/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/static/font-awesome/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    
+    <script src="./noball-html_files/jquery.min.js"></script>
+    <script src="./noball-html_files/bootstrap.js"></script>
+    
+    
+		<script type="text/javascript">
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'ピタゴラス勝率と実際の勝率の相関図(MLB, 2013シーズン(AL))'
+        },
+        subtitle: {
+            text: 'Source: Sean lahman database 2013'
+        },
+        xAxis: {
+            title: {
+                enabled: true,
+                text: '実際の勝利数'
+            },
+            startOnTick: true,
+            endOnTick: true,
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'ピタゴラス勝率から算出した勝利数'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 100,
+            y: 70,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+            borderWidth: 1
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: '実際：{point.x}勝, 予測：{point.y}勝'
+                }
+            }
+        },
+        series: [{
+            name: 'チーム(地区順位) ※E:東地区,C:中地区,W:西地区',
+            color: 'rgba(223, 83, 83, .5)',
+            dataLabels: {
+                enabled: true,
+                x:20,
+                formatter:function() {
+                    return this.point.team;
+                },
+                style:{color:"black"}
+            },
+            data: [
+                
+                    {
+                        "x": 93,
+                        "y": 98.0,
+                        "name": 'Detroit Tigers(C, 1)',
+                        "team": 'DET'
+                    },
+                
+                    {
+                        "x": 92,
+                        "y": 90.0,
+                        "name": 'Cleveland Indians(C, 2)',
+                        "team": 'CLE'
+                    },
+                
+                    {
+                        "x": 86,
+                        "y": 87.0,
+                        "name": 'Kansas City Royals(C, 3)',
+                        "team": 'KCA'
+                    },
+                
+                    {
+                        "x": 66,
+                        "y": 63.0,
+                        "name": 'Minnesota Twins(C, 4)',
+                        "team": 'MIN'
+                    },
+                
+                    {
+                        "x": 63,
+                        "y": 67.0,
+                        "name": 'Chicago Cubs(C, 5)',
+                        "team": 'CHA'
+                    },
+                
+                    {
+                        "x": 97,
+                        "y": 100.0,
+                        "name": 'Boston Red Sox(E, 1)',
+                        "team": 'BOS'
+                    },
+                
+                    {
+                        "x": 92,
+                        "y": 87.0,
+                        "name": 'Tampa Bay Rays(E, 2)',
+                        "team": 'TBA'
+                    },
+                
+                    {
+                        "x": 85,
+                        "y": 85.0,
+                        "name": 'Baltimore Orioles(E, 3)',
+                        "team": 'BAL'
+                    },
+                
+                    {
+                        "x": 85,
+                        "y": 79.0,
+                        "name": 'New York Yankees(E, 4)',
+                        "team": 'NYA'
+                    },
+                
+                    {
+                        "x": 74,
+                        "y": 77.0,
+                        "name": 'Toronto Blue Jays(E, 5)',
+                        "team": 'TOR'
+                    },
+                
+                    {
+                        "x": 96,
+                        "y": 96.0,
+                        "name": 'Oakland Athletics(W, 1)',
+                        "team": 'OAK'
+                    },
+                
+                    {
+                        "x": 91,
+                        "y": 92.0,
+                        "name": 'Texas Rangers(W, 2)',
+                        "team": 'TEX'
+                    },
+                
+                    {
+                        "x": 78,
+                        "y": 81.0,
+                        "name": 'Los Angeles Angels of Anaheim(W, 3)',
+                        "team": 'LAA'
+                    },
+                
+                    {
+                        "x": 71,
+                        "y": 67.0,
+                        "name": 'Seattle Mariners(W, 4)',
+                        "team": 'SEA'
+                    },
+                
+                    {
+                        "x": 51,
+                        "y": 58.0,
+                        "name": 'Houston Astros(W, 5)',
+                        "team": 'HOU'
+                    },
+                
+            ]
+
+        }
+        ]
+    });
+});
+
+
+		</script>
+
+  </head>
+
+  <body>
+    
+    
+    <script src="./noball-html_files/highcharts.js"></script>
+    <script src="./noball-html_files/exporting.js"></script>
+
+
+    <div id="wrapper">
+
+      
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://127.0.0.1:8000/mlb">No Ball</a>
+        </div>
+
+        
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav side-nav">
+          
+            <li>
+                <a href="http://127.0.0.1:8000/mlb/"><i class="fa fa-dashboard"></i> Top</a>
+            </li>
+          
+          </ul>
+        </div>
+      </nav>
+      <div id="page-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2><small></small></h2>
+              
+    <form role="search" method="post" action="./noball-html_files/noball-html.html">
+    <input type="hidden" name="csrfmiddlewaretoken" value="61EJdq6a8ViHMlHFD8Ja0O3CbYEFFVBX">
+<div class="form-group input-group">
+    <input type="text" name="year" class="form-control" placeholder="input a year" value="2013">
+    <select name="league" class="form-control">
+        
+            
+                <option value="AL" selected="">AL</option>
+            
+            
+        
+            
+            
+                <option value="NL">NL</option>
+            
+        
+    </select>
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+    </span>
+</div>
+    </form>
+
+              
+
+            <h3></h3>
+          </div>
+        </div>
+      
+    
+<div id="container" style="margin: 0 auto" data-highcharts-chart="0"><div class="highcharts-container" id="highcharts-0" style="position: relative; overflow: hidden; width: 1005px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="1005" height="400"><desc>Created with Highcharts 4.0.3</desc><defs><clippath id="highcharts-1"><rect x="0" y="0" width="925" height="284"></rect></clippath></defs><rect x="0" y="0" width="1005" height="400" strokeWidth="0" fill="#FFFFFF" class=" highcharts-background"></rect><g class="highcharts-button" style="cursor:default;" stroke-linecap="round" transform="translate(971,10)"><title>Chart context menu</title><rect x="0.5" y="0.5" width="24" height="22" strokeWidth="1" fill="white" stroke="none" stroke-width="1" rx="2" ry="2"></rect><path fill="#E0E0E0" d="M 6 6.5 L 20 6.5 M 6 11.5 L 20 11.5 M 6 16.5 L 20 16.5" stroke="#666" stroke-width="3" zIndex="1"></path><text x="0" zIndex="1" style="color:black;fill:black;" y="13"></text></g><path fill="rgba(223,83,83,0.25)" d="M 0 0"></path><g class="highcharts-grid" zIndex="1"></g><g class="highcharts-grid" zIndex="1"><path fill="none" d="M 70 60.5 L 995 60.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 70 108.5 L 995 108.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 70 156.5 L 995 156.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 70 203.5 L 995 203.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 70 250.5 L 995 250.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 70 298.5 L 995 298.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path><path fill="none" d="M 70 345.5 L 995 345.5" stroke="#C0C0C0" stroke-width="1" zIndex="1" opacity="1"></path></g><g class="highcharts-axis" zIndex="2"><path fill="none" d="M 162.5 345 L 162.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 254.5 345 L 254.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 347.5 345 L 347.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 439.5 345 L 439.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 532.5 345 L 532.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 624.5 345 L 624.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 717.5 345 L 717.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 809.5 345 L 809.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 902.5 345 L 902.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 995.5 345 L 995.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><path fill="none" d="M 69.5 345 L 69.5 355" stroke="#C0D0E0" stroke-width="1" opacity="1"></path><text x="532.5" zIndex="7" text-anchor="middle" transform="translate(0,0)" class=" highcharts-xaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="382.96875">実際の勝利数</text><path fill="none" d="M 70 345.5 L 995 345.5" stroke="#C0D0E0" stroke-width="1" zIndex="7" visibility="visible"></path></g><g class="highcharts-axis" zIndex="2"><text x="24.125" zIndex="7" text-anchor="middle" transform="translate(0,0) rotate(270 24.125 203)" class=" highcharts-yaxis-title" style="color:#707070;fill:#707070;" visibility="visible" y="203">ピタゴラス勝率から算出した勝利数</text></g><g class="highcharts-series-group" zIndex="3"><g class="highcharts-series" visibility="visible" zIndex="0.1" transform="translate(70,61) scale(1 1)" clip-path="url(#highcharts-1)"></g><g class="highcharts-markers highcharts-tracker" visibility="visible" zIndex="0.1" transform="translate(70,61) scale(1 1)" clip-path="none" style=""><path fill="rgba(223, 83, 83, .5)" d="M 18 241.13333333333333 C 24.66 241.13333333333333 24.66 251.13333333333333 18 251.13333333333333 C 11.34 251.13333333333333 11.34 241.13333333333333 18 241.13333333333333 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 388 198.53333333333333 C 394.66 198.53333333333333 394.66 208.53333333333333 388 208.53333333333333 C 381.34 208.53333333333333 381.34 198.53333333333333 388 198.53333333333333 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 518 132.26666666666665 C 524.66 132.26666666666665 524.66 142.26666666666665 518 142.26666666666665 C 511.34 142.26666666666665 511.34 132.26666666666665 518 132.26666666666665 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 758 80.19999999999999 C 764.66 80.19999999999999 764.66 90.19999999999999 758 90.19999999999999 C 751.34 90.19999999999999 751.34 80.19999999999999 758 80.19999999999999 Z" stroke-width="1"></path><path fill="rgba(223, 83, 83, .5)" d="M 851 61.26666666666665 C 857.66 61.26666666666665 857.66 71.26666666666665 851 71.26666666666665 C 844.34 71.26666666666665 844.34 61.26666666666665 851 61.26666666666665 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 444 151.2 C 450.66 151.2 450.66 161.2 444 161.2 C 437.34 161.2 437.34 151.2 444 151.2 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 647 141.73333333333332 C 653.66 141.73333333333332 653.66 151.73333333333332 647 151.73333333333332 C 640.34 151.73333333333332 640.34 141.73333333333332 647 141.73333333333332 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 647 113.33333333333334 C 653.66 113.33333333333334 653.66 123.33333333333334 647 123.33333333333334 C 640.34 123.33333333333334 640.34 113.33333333333334 647 113.33333333333334 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 777 103.86666666666667 C 783.66 103.86666666666667 783.66 113.86666666666667 777 113.86666666666667 C 770.34 113.86666666666667 770.34 103.86666666666667 777 103.86666666666667 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 869 42.33333333333334 C 875.66 42.33333333333334 875.66 52.33333333333334 869 52.33333333333334 C 862.34 52.33333333333334 862.34 42.33333333333334 869 42.33333333333334 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 240 198.53333333333333 C 246.66 198.53333333333333 246.66 208.53333333333333 240 208.53333333333333 C 233.34 208.53333333333333 233.34 198.53333333333333 240 198.53333333333333 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 296 217.46666666666667 C 302.66 217.46666666666667 302.66 227.46666666666667 296 227.46666666666667 C 289.34 227.46666666666667 289.34 217.46666666666667 296 217.46666666666667 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 666 103.86666666666667 C 672.66 103.86666666666667 672.66 113.86666666666667 666 113.86666666666667 C 659.34 113.86666666666667 659.34 103.86666666666667 666 103.86666666666667 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 777 89.66666666666666 C 783.66 89.66666666666666 783.66 99.66666666666666 777 99.66666666666666 C 770.34 99.66666666666666 770.34 89.66666666666666 777 89.66666666666666 Z"></path><path fill="rgba(223, 83, 83, .5)" d="M 795 51.80000000000001 C 801.66 51.80000000000001 801.66 61.80000000000001 795 61.80000000000001 C 788.34 61.80000000000001 788.34 51.80000000000001 795 51.80000000000001 Z"></path></g></g><text x="503" text-anchor="middle" class="highcharts-title" zIndex="4" style="color:#333333;font-size:18px;fill:#333333;width:941px;" y="25"><tspan>ピタゴラス勝率と実際の勝率の相関図(MLB, 2013シーズン(AL))</tspan></text><text x="503" text-anchor="middle" class="highcharts-subtitle" zIndex="4" style="color:#555555;fill:#555555;width:941px;" y="46"><tspan>Source: Sean lahman database 2013</tspan></text><g class="highcharts-data-labels highcharts-tracker" visibility="visible" zIndex="6" transform="translate(70,61) scale(1 1)" opacity="1" style=""><g zIndex="1" style="cursor:default;" transform="translate(802,38)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">DET</text></g><g zIndex="1" style="cursor:default;" transform="translate(784,76)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">CLE</text></g><g zIndex="1" style="cursor:default;" transform="translate(672,90)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">KCA</text></g><g zIndex="1" style="cursor:default;" transform="translate(303,203)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">MIN</text></g><g zIndex="1" style="cursor:default;" transform="translate(246,185)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">CHA</text></g><g zIndex="1" style="cursor:default;" transform="translate(876,28)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">BOS</text></g><g zIndex="1" style="cursor:default;" transform="translate(784,90)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">TBA</text></g><g zIndex="1" style="cursor:default;" transform="translate(655,99)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">BAL</text></g><g zIndex="1" style="cursor:default;" transform="translate(653,128)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">NYA</text></g><g zIndex="1" style="cursor:default;" transform="translate(450,137)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">TOR</text></g><g zIndex="1" style="cursor:default;" transform="translate(856,47)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">OAK</text></g><g zIndex="1" style="cursor:default;" transform="translate(766,66)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">TEX</text></g><g zIndex="1" style="cursor:default;" transform="translate(524,118)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">LAA</text></g><g zIndex="1" style="cursor:default;" transform="translate(396,185)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">SEA</text></g><g zIndex="1" style="cursor:default;" transform="translate(23,227)"><text x="3" zIndex="1" style="font-size:11px;color:black;fill:black;" y="15">HOU</text></g></g><g class="highcharts-legend" zIndex="7" transform="translate(110,80)"><rect x="0.5" y="0.5" width="290" height="24" strokeWidth="1" stroke="#909090" stroke-width="1" fill="#FFFFFF" visibility="visible"></rect><g zIndex="1"><g><g class="highcharts-legend-item" zIndex="1" transform="translate(8,3)"><path fill="rgba(223, 83, 83, .5)" d="M 8 6 C 14.66 6 14.66 16 8 16 C 1.3399999999999999 16 1.3399999999999999 6 8 6 Z"></path><text x="21" style="color:#333333;font-size:12px;font-weight:bold;cursor:pointer;fill:#333333;" text-anchor="start" zIndex="2" y="15"><tspan>チーム(地区順位) ※E:東地区,C:中地区,W:西地区</tspan></text></g></g></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" zIndex="7"><text x="70" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">50</text><text x="162.5" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">55</text><text x="255" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">60</text><text x="347.5" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">65</text><text x="440" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">70</text><text x="532.5" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">75</text><text x="625" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">80</text><text x="717.5" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">85</text><text x="810" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">90</text><text x="902.5" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">95</text><text x="994.5625" text-anchor="middle" style="color:#606060;cursor:default;font-size:11px;fill:#606060;" y="365" opacity="1">100</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" zIndex="7"><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="350.515625" opacity="1">50</text><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="303.1822916666667" opacity="1">60</text><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="255.84895833333331" opacity="1">70</text><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="208.515625" opacity="1">80</text><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="161.18229166666666" opacity="1">90</text><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="113.84895833333334" opacity="1">100</text><text x="55" text-anchor="end" style="width:312px;color:#606060;cursor:default;font-size:11px;fill:#606060;" y="66.515625" opacity="1">110</text></g><g class="highcharts-tooltip" zIndex="8" style="cursor:default;padding:0;white-space:nowrap;" transform="translate(754,84)" opacity="0" visibility="hidden"><path fill="none" d="M 3.5 0.5 L 147.5 0.5 C 150.5 0.5 150.5 0.5 150.5 3.5 L 150.5 43.5 C 150.5 46.5 150.5 46.5 147.5 46.5 L 81.5 46.5 75.5 52.5 69.5 46.5 3.5 46.5 C 0.5 46.5 0.5 46.5 0.5 43.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.049999999999999996" stroke-width="5" transform="translate(1, 1)" width="150" height="46"></path><path fill="none" d="M 3.5 0.5 L 147.5 0.5 C 150.5 0.5 150.5 0.5 150.5 3.5 L 150.5 43.5 C 150.5 46.5 150.5 46.5 147.5 46.5 L 81.5 46.5 75.5 52.5 69.5 46.5 3.5 46.5 C 0.5 46.5 0.5 46.5 0.5 43.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.09999999999999999" stroke-width="3" transform="translate(1, 1)" width="150" height="46"></path><path fill="none" d="M 3.5 0.5 L 147.5 0.5 C 150.5 0.5 150.5 0.5 150.5 3.5 L 150.5 43.5 C 150.5 46.5 150.5 46.5 147.5 46.5 L 81.5 46.5 75.5 52.5 69.5 46.5 3.5 46.5 C 0.5 46.5 0.5 46.5 0.5 43.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" isShadow="true" stroke="black" stroke-opacity="0.15" stroke-width="1" transform="translate(1, 1)" width="150" height="46"></path><path fill="rgba(249, 249, 249, .85)" d="M 3.5 0.5 L 147.5 0.5 C 150.5 0.5 150.5 0.5 150.5 3.5 L 150.5 43.5 C 150.5 46.5 150.5 46.5 147.5 46.5 L 81.5 46.5 75.5 52.5 69.5 46.5 3.5 46.5 C 0.5 46.5 0.5 46.5 0.5 43.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5" stroke="rgba(223, 83, 83, .5)" stroke-width="1"></path><text x="8" zIndex="1" style="font-size:12px;color:#333333;fill:#333333;" y="21"><tspan style="font-weight:bold">Texas Rangers(W, 2)</tspan><tspan x="8" dy="16">実際：91勝, 予測：92勝</tspan></text></g><text x="995" text-anchor="end" zIndex="8" style="cursor:pointer;color:#909090;font-size:9px;fill:#909090;" y="395">Highcharts.com</text></svg></div></div>
+
+
+
+      </div>
+
+    </div>
+
+  
+
+  
+
+</body></html>
