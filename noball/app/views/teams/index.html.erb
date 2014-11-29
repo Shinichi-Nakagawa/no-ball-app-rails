@@ -71,112 +71,15 @@
                     style:{color:"black"}
                 },
                 data: [
-
-                    {
-                        "x": 93,
-                        "y": 98.0,
-                        "name": 'Detroit Tigers(C, 1)',
-                        "team": 'DET'
-                    },
-
-                    {
-                        "x": 92,
-                        "y": 90.0,
-                        "name": 'Cleveland Indians(C, 2)',
-                        "team": 'CLE'
-                    },
-
-                    {
-                        "x": 86,
-                        "y": 87.0,
-                        "name": 'Kansas City Royals(C, 3)',
-                        "team": 'KCA'
-                    },
-
-                    {
-                        "x": 66,
-                        "y": 63.0,
-                        "name": 'Minnesota Twins(C, 4)',
-                        "team": 'MIN'
-                    },
-
-                    {
-                        "x": 63,
-                        "y": 67.0,
-                        "name": 'Chicago Cubs(C, 5)',
-                        "team": 'CHA'
-                    },
-
-                    {
-                        "x": 97,
-                        "y": 100.0,
-                        "name": 'Boston Red Sox(E, 1)',
-                        "team": 'BOS'
-                    },
-
-                    {
-                        "x": 92,
-                        "y": 87.0,
-                        "name": 'Tampa Bay Rays(E, 2)',
-                        "team": 'TBA'
-                    },
-
-                    {
-                        "x": 85,
-                        "y": 85.0,
-                        "name": 'Baltimore Orioles(E, 3)',
-                        "team": 'BAL'
-                    },
-
-                    {
-                        "x": 85,
-                        "y": 79.0,
-                        "name": 'New York Yankees(E, 4)',
-                        "team": 'NYA'
-                    },
-
-                    {
-                        "x": 74,
-                        "y": 77.0,
-                        "name": 'Toronto Blue Jays(E, 5)',
-                        "team": 'TOR'
-                    },
-
-                    {
-                        "x": 96,
-                        "y": 96.0,
-                        "name": 'Oakland Athletics(W, 1)',
-                        "team": 'OAK'
-                    },
-
-                    {
-                        "x": 91,
-                        "y": 92.0,
-                        "name": 'Texas Rangers(W, 2)',
-                        "team": 'TEX'
-                    },
-
-                    {
-                        "x": 78,
-                        "y": 81.0,
-                        "name": 'Los Angeles Angels of Anaheim(W, 3)',
-                        "team": 'LAA'
-                    },
-
-                    {
-                        "x": 71,
-                        "y": 67.0,
-                        "name": 'Seattle Mariners(W, 4)',
-                        "team": 'SEA'
-                    },
-
-                    {
-                        "x": 51,
-                        "y": 58.0,
-                        "name": 'Houston Astros(W, 5)',
-                        "team": 'HOU'
-                    },
-
+                        <%# ここにデータを書き出す %>
+                        <% @teams.each do |team| %>
+                        {
+                            "x": <%= team.W %>,
+                            "y": <%= to_pythagoras_data(team.R, team.RA, team.G) %>,
+                            "name": ' <%= team.name %>( <%= team.divID %>,  <%= team.Rank %>,)',
+                            "team": ' <%= team.teamID %>'
+                        },
+                        <% end %>
                 ]
 
             }
@@ -186,4 +89,28 @@
 
 
 </script>
+<form role="search" method="post" action="./noball-html_files/noball-html.html">
+  <input type="hidden" name="csrfmiddlewaretoken" value="61EJdq6a8ViHMlHFD8Ja0O3CbYEFFVBX">
+  <div class="form-group input-group">
+    <input type="text" name="year" class="form-control" placeholder="input a year" value="2013">
+    <select name="league" class="form-control">
+
+
+      <option value="AL" selected="">AL</option>
+
+
+
+
+
+      <option value="NL">NL</option>
+
+
+    </select>
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+    </span>
+  </div>
+</form>
+
+
 <div id="container" style="margin: 0 auto"></div>
