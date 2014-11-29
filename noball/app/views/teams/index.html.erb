@@ -1,0 +1,116 @@
+<script type="text/javascript">
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'ピタゴラス勝率と実際の勝率の相関図(MLB, 2013シーズン(AL))'
+            },
+            subtitle: {
+                text: 'Source: Sean lahman database 2013'
+            },
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: '実際の勝利数'
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true
+            },
+            yAxis: {
+                title: {
+                    text: 'ピタゴラス勝率から算出した勝利数'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100,
+                y: 70,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+                borderWidth: 1
+            },
+            plotOptions: {
+                scatter: {
+                    marker: {
+                        radius: 5,
+                        states: {
+                            hover: {
+                                enabled: true,
+                                lineColor: 'rgb(100,100,100)'
+                            }
+                        }
+                    },
+                    states: {
+                        hover: {
+                            marker: {
+                                enabled: false
+                            }
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{point.key}</b><br>',
+                        pointFormat: '実際：{point.x}勝, 予測：{point.y}勝'
+                    }
+                }
+            },
+            series: [{
+                name: 'チーム(地区順位) ※E:東地区,C:中地区,W:西地区',
+                color: 'rgba(223, 83, 83, .5)',
+                dataLabels: {
+                    enabled: true,
+                    x:20,
+                    formatter:function() {
+                        return this.point.team;
+                    },
+                    style:{color:"black"}
+                },
+                data: [
+                        <%# ここにデータを書き出す %>
+                        <% @teams.each do |team| %>
+                        {
+                            "x": <%= team.W %>,
+                            "y": <%= to_pythagoras_data(team.R, team.RA, team.G) %>,
+                            "name": ' <%= team.name %>( <%= team.divID %>,  <%= team.Rank %>,)',
+                            "team": ' <%= team.teamID %>'
+                        },
+                        <% end %>
+                ]
+
+            }
+            ]
+        });
+    });
+
+
+</script>
+<form role="search" method="post" action="./noball-html_files/noball-html.html">
+  <input type="hidden" name="csrfmiddlewaretoken" value="61EJdq6a8ViHMlHFD8Ja0O3CbYEFFVBX">
+  <div class="form-group input-group">
+    <input type="text" name="year" class="form-control" placeholder="input a year" value="2013">
+    <select name="league" class="form-control">
+
+
+      <option value="AL" selected="">AL</option>
+
+
+
+
+
+      <option value="NL">NL</option>
+
+
+    </select>
+    <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+    </span>
+  </div>
+</form>
+
+
+<div id="container" style="margin: 0 auto"></div>
